@@ -1,0 +1,30 @@
+﻿@model List<CourseResultViewModel>
+
+@if(Model.Count == 0)
+{
+    <h1>There is No Student enrolled to @Model course</h1>
+}
+else
+{
+    <h1>Course Data</h1>
+
+    <table class="table table-active table-hover text-center">
+        <thead>
+            <tr>
+                <td>Student Name</td>
+                <td>Course</td>
+                <td>Degree</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                    <tr style="color: @item.color">
+                        <td>@item.studentName</td>
+                        <td>@item.CrsName</td>
+                        <td>@item.sudentDegree</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+}

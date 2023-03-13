@@ -1,0 +1,21 @@
+﻿@model CourseResultViewModel
+
+<h1> Trainee Data</h1>
+
+<table class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Course</td>
+            <td>Degree</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="color: @Model.color">
+            <td>@Model.studentName</td>
+            <td>@Model.CrsName</td>
+            <td>@Model.sudentDegree</td>
+        </tr>
+
+    </tbody>
+</table>
