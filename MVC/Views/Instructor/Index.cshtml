@@ -1,6 +1,6 @@
 ﻿@model List<Instructor>
-<h1 class="mb-5">Instructors</h1>
-<table class="table">
+<h1 class="mb-5 text-dark">Instructors</h1>
+<table class="table table-active table-hover text-dark">
     <thead>
         <tr>
             <th scope="col">Name</th>
@@ -10,23 +10,29 @@
             <th scope="col">Department</th>
             <th scope="col">Course</th>
             <th scope="col">Details</th>
-
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (Instructor inst in Model)
         {
             <tr class="text-center">
-                <th scope="row">@inst.InsName</th>
-                <th> <img src="/imgs/@(inst.Image)" class="w-25 m-auto h-25" /></th>
-                <th scope="row">@inst.Salary</th>
-                <th scope="row">@inst.Address</th>
-                <th scope="row">@inst.Department?.DeptName</th>
-                <th scope="row">@inst.Course?.CrsName</th>
-                <th>
+                <td scope="row">@inst.InsName</td>
+                <td> <img src="/imgs/@(inst.Image)" class="w-25 m-auto h-25" /></td>
+                <td scope="row">@inst.Salary</td>
+                <td scope="row">@inst.Address</td>
+                <td scope="row">@inst.Department?.DeptName</td>
+                <td scope="row">@inst.Course?.CrsName</td>
+                <td>
                     <a href="/Instructor/Detail/@inst.Id" class="btn btn-primary">Details</a>
-                </th>
+                </td>
+                <td>
+                    <a href="/Instructor/Edit/@inst.Id" class="btn btn-primary">Edit</a>
+                </td>
+
             </tr>
         }
     </tbody>
 </table>
+
+ <a href="/instructor/new" class="btn btn-success p-2 m-3">Create</a>

@@ -1,0 +1,62 @@
+﻿@model InstructorDepartmentCourseViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-dark">Edit Instructor Data</h1>
+
+<form method="post" enctype="multipart/form-data" action="/Instructor/Edit/@Model.instID">
+    <div class="form-group m-2 text-start">
+        <label for="Ins_Name" class="text-light">Name</label>
+        <input type="text" name="instName" id="snstName" value="@Model.instName" class="form-control" placeholder="Instructor Name">
+    </div>
+    <div class="form-group m-2 text-start">
+        <label for="Ins_Name" class="text-light">Salary</label>
+        <input type="number" name="salary" id="salary" value="@Model.salary" class="form-control" placeholder="Salary">
+    </div>
+    <div class="form-group m-2 text-start">
+        <label for="Ins_address" class="text-light">Address</label>
+        <input type="text" name="address" id="address" value="@Model.address" class="form-control" placeholder="Address">
+    </div>
+    <div class="form-group m-2 text-start">
+        <label for="Ins_address" class="text-light">Image</label>
+        <input type="file" name="imageFile" id="image" class="form-control">
+    </div>
+    <div class="form-group m-2 text-start">
+        <img src="/imgs/@(Model.image)"  style="width: 50px; height: 50px" class="rounded-circle" />
+    </div>
+    <div class="form-group m-2 text-start">
+        <label for="InsCourse" class="text-light">Course</label>
+        <select class="form-control" name ="crs_id">
+        @foreach(Course crs in Model.courses)
+        {
+                @if(Model.crs_id == crs.Id)
+                {
+                    <option value="@crs.Id" selected>@crs.CrsName</option>
+                }
+                else
+                { 
+                     <option value="@crs.Id">@crs.CrsName</option>
+                }
+        }
+        </select>
+    </div>
+    <div class="form-group m-2 text-start">
+        <label for="InsDept" class="text-light">Department</label>
+        @*<input type="text" name="InsName" id="InsName" class="form-control" placeholder="Instructor Name">*@
+        <select class="form-control" name ="depId">
+            @foreach (Department dept in Model.departments)
+            {
+                @if (Model.depId == dept.Id)
+                {
+                    <option value="@dept.Id" selected>@dept.DeptName</option>
+                }
+                else
+                {
+                    <option value="@dept.Id">@dept.DeptName</option>
+                }
+            }
+        </select>
+    </div>
+    <input type="submit" value="Edit" class="btn btn-primary m-3 m-auto" />
+</form>

@@ -1,0 +1,34 @@
+﻿@model CourseDepartmentViewModel
+@{
+    SelectList depts = new SelectList(Model.departments, "Id", "DeptName");
+}
+<form asp-action="save" method="post" asp-controller="Course">
+    <div class="form-control m-2 text-start">
+        <label asp-for="CrsName"></label>
+        <input asp-for="CrsName" />
+       <span asp-validation-for = "CrsName" ></span>
+    </div>
+    <div class="form-control m-2 text-start">
+        <label asp-for="Degree"></label>
+        <input asp-for="Degree"/>
+        <span asp-validation-for = "Degree" class="text-danger"></span>
+    </div>
+    <div class="form-control m-2 text-start">
+        <label asp-for="MinDegree"></label>
+        <input asp-for="MinDegree" />
+        <span asp-validation-for="MinDegree" class="text-danger"></span>
+    </div>
+    <div class="form-control m-2 text-start">
+        <label for="Department"></label>
+        <select asp-for="dept_id" asp-items="depts">
+
+        </select>
+        <span asp-validation-for="dept_id" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Save" class="btn btn-Success m-2 p-2"/>
+</form>
+@section scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

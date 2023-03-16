@@ -6,8 +6,8 @@ namespace MVC.Models
     {
         public int Id { get; set; }
         public string InsName { get; set; }
-        public double Salary { get; set; }
-        public string Image { get; set; }
+        public int Salary { get; set; }
+        public string? Image { get; set; }
         public string Address { get; set; }
         [ForeignKey ("Department")]
         public int Dept_Id { get; set; }
