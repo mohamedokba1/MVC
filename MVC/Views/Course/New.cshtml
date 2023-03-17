@@ -2,11 +2,12 @@
 @{
     SelectList depts = new SelectList(Model.departments, "Id", "DeptName");
 }
-<form asp-action="save" method="post" asp-controller="Course">
+<form asp-action="save" method="post" asp-controller="Course" class="form-text">
+    <div asp-validation-summary="All"></div> <!-- Return all erros in bullet list -->
     <div class="form-control m-2 text-start">
         <label asp-for="CrsName"></label>
         <input asp-for="CrsName" />
-       <span asp-validation-for = "CrsName" ></span>
+       <span asp-validation-for = "CrsName" class="text-danger"></span>
     </div>
     <div class="form-control m-2 text-start">
         <label asp-for="Degree"></label>
@@ -21,7 +22,7 @@
     <div class="form-control m-2 text-start">
         <label for="Department"></label>
         <select asp-for="dept_id" asp-items="depts">
-
+            <option value="0">-- Select Department --</option>
         </select>
         <span asp-validation-for="dept_id" class="text-danger"></span>
     </div>

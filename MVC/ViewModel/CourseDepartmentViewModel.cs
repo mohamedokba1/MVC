@@ -3,7 +3,7 @@ using System.ComponentModel;
 using MVC.Models;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using MVC.Validation;
+using MVC.Models.Custom_Validation;
 
 namespace MVC.ViewModel
 {
@@ -19,7 +19,7 @@ namespace MVC.ViewModel
         [Range(maximum: 100, minimum: 50, ErrorMessage = "Degree Must be between 50 and 100")]
         public int Degree { get; set; }
         [DisplayName("Minimum Degree")]
-        [Remote("CheckMinDegree", "Course", AdditionalFields = "Degree", ErrorMessage = "Min Degree Must be Less than Degree")]
+        [Remote("checkMinDegree", "Course", AdditionalFields = "Degree" , ErrorMessage ="minimum degree must be less than degree")]
         public int MinDegree { get; set; }
         [Required(ErrorMessage = "Department is Required")]
         public int dept_id { get; set; }

@@ -1,9 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MVC.ViewModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Composition;
 
 namespace MVC.Models
 {
+    //[MetadataType(typeof(CourseDepartmentViewModel))] // map on DB first Approach
     public class Course
     {
         public int Id { get; set; }

@@ -52,7 +52,7 @@ namespace MVC.Controllers
         {
             string newFileName = string.Empty;
             Instructor oldRef = DB.Instructors.FirstOrDefault(ins => ins.Id == id);
-            if (newIns.instName != null)
+            if (ModelState.IsValid)
             {
                 if(newIns.imageFile != null && newIns.imageFile.FileName != oldRef.Image)
                 {
@@ -89,15 +89,15 @@ namespace MVC.Controllers
         public IActionResult New()
         {
             InstructorDepartmentCourseViewModel InsDept = new InstructorDepartmentCourseViewModel();
-            InsDept.courses =DB.Courses.ToList();
-            InsDept.departments =DB.Departments.ToList();
+            InsDept.courses = DB.Courses.ToList();
+            InsDept.departments = DB.Departments.ToList();
             return View(InsDept);
         }
         [HttpPost]
         public IActionResult saveNew(InstructorDepartmentCourseViewModel newIns) 
         {
             Instructor newInstractor = new Instructor();
-            if(newIns.instName != null)
+            if(ModelState.IsValid)
             {
                 if (newIns.imageFile != null)
                 {
