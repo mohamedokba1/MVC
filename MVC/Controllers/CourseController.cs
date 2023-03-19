@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models;
+using MVC.Repository;
 using MVC.ViewModel;
 
 namespace MVC.Controllers
@@ -9,12 +10,15 @@ namespace MVC.Controllers
     public class CourseController : Controller
     {
         ITIEntity Context = new ITIEntity();
-
+        ICourseRepository CourseRepository;
+        public CourseController(ICourseRepository courseRepository)
+        {
+            CourseRepository = courseRepository;
+        }
 
         public IActionResult Index()
         {
-            List<Course> courses = Context.Courses.Include(crs => crs.Department).ToList();
-            return View(courses);
+            return View(CourseRepository.GetAll());
         }
 
         public IActionResult New()
@@ -46,22 +50,22 @@ namespace MVC.Controllers
                 }
 
             }
-            newCourse.departments = Context.Departments.ToList();
+            //newCourse.departments = Context.Departments.ToList();
             return View("New",newCourse);
         }
         
         public IActionResult delete(int id)
         {
-            Course oldCourse =Context.Courses.FirstOrDefault(crs => crs.Id == id);
-            Context.Courses.Remove(oldCourse);
-            Context.SaveChanges();
+            //CourseRepository.Delete(id);
             return RedirectToAction("Index");
         }
 
         public IActionResult checkMinDegree(int MinDegree, int Degree)
              => (MinDegree > Degree) ? Json(false) : Json(true);
-
-        //public IActionResult CheckMinDegree(int Degree, int MinDegree)
-        //   => (MinDegree < Degree) ? Json(true) : Json(false);
+        public IActionResult getAllCoursesByDeptID(int deptID)
+        {
+            List<Course> courses = Context.Courses.Where(crs => crs.dept_Id == deptID).ToList();
+            return Json(courses);
+        }
     }
 }

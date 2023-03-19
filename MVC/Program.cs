@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using MVC.Models;
+using MVC.Repository;
+
 namespace MVC
 {
     public class Program
@@ -12,6 +16,14 @@ namespace MVC
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+
+            builder.Services.AddDbContext<ITIEntity>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("CS"));
+            });
+
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline. //middlewares

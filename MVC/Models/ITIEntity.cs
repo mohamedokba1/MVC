@@ -6,6 +6,7 @@ namespace MVC.Models
     {
         public ITIEntity():base() { }
 
+        public ITIEntity(DbContextOptions options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=MVCDB; Integrated Security = True; Encrypt = false");

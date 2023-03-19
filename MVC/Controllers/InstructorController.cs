@@ -10,6 +10,7 @@ namespace MVC.Controllers
     {
         ITIEntity DB = new ITIEntity();
         private readonly IWebHostEnvironment _environment;
+
         public InstructorController(IWebHostEnvironment environment)
         {
             _environment = environment; 
@@ -89,7 +90,6 @@ namespace MVC.Controllers
         public IActionResult New()
         {
             InstructorDepartmentCourseViewModel InsDept = new InstructorDepartmentCourseViewModel();
-            InsDept.courses = DB.Courses.ToList();
             InsDept.departments = DB.Departments.ToList();
             return View(InsDept);
         }
@@ -117,7 +117,8 @@ namespace MVC.Controllers
                 DB.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View("New");
+            newIns.departments = DB.Departments.ToList();
+            return View("New", newIns);
         }
     }
 }
